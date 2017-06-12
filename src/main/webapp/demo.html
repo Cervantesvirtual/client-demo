@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style> <meta charset="utf-8"> 
+<title>Demo buscador - Biblioteca Virtual Miguel de Cervantes</title> 
+<meta name="description"> 
+<meta name="viewport" content="width=device-width">  
+<link rel="stylesheet" href="includes/main.css">
+<link rel="stylesheet" href="includes/results.css">
+</head> 
+<body ng-app="demoApp" class="ng-scope" ng-controller="demoController"> <!--[if lt IE 7]>
+   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+   <![endif]-->  
+<div> 
+    <!-- uiView:  -->
+    <div ui-view="" class="ng-scope" >
+        <div class="ui-base ng-scope"> 
+            <!-- uiView:  -->
+            <div ui-view="" class="ng-scope" style="">
+                <div class="dashboard-page ng-scope"> 
+                    <div class="container-fluid"> 
+                    <div class="row"> 
+                        <div class="col-sm-3 col-md-2 sidebar"> 
+                            <div class="text-center"> 
+                                <h2 class="brand">BVMC <small>Demo</small></h2> 
+                                <img src="includes/flat-avatar.png" class="user-avatar"><br> 
+                                <a ui-sref="login" class="btn btn-white btn-outline btn-rounded btn-sm" href="#">Salir</a> 
+                            </div> 
+                            <ul class="nav nav-sidebar"> 
+                            <li><a href="demo.html">Buscador de metadatos</a></li>
+                            <li><a href="contenido.html">Buscador de contenido</a></li>
+                            <li><a href="http://data.cervantesvirtual.com/about">Documentación</a></li> 
+                            <li><a href="http://galatea.cervantesvirtual.com">Únete a Galatea</a></li> 
+                            <li><a href="http://data.cervantesvirtual.com/blog">Novedades</a></li> 
+                            </ul> 
+                        </div> 
+                        <!-- uiView:  -->
+                        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ng-scope" ui-view="">
+                        <div class="ng-scope"> 
+                            <a ui-sref="reports" class="pull-right btn btn-primary btn-outline btn-rounded" href="http://www.cervantesvirtual.com/bibliotecario/">El Bibliotecario</a> 
+                            <h2>Inicio <small>Buscador</small></h2> 
+                            <div class="jumbotron"> 
+                                <div class="container"> 
+                                    <h1>Bienvenido</h1>
+                                    Busca las obras del catálogo de la Biblioteca Virtual Miguel de Cervantes por autor, materia o título<br><br> 
+                                    <p> <input type="text" class="form-control" ng-model="text" ></input><a ng-click="search()" class="btn btn-primary btn-lg btn-outline btn-rounded">Buscar</a> </p> 
+                                </div> 
+                            </div> 
+
+                            <div class="jumbotron" ng-if="results"> 
+                                <div class="container"> 
+                                    <h3>{{total}} resultados para la búsqueda {{text}}</h3>
+	            
+	                                <div class="media" ng-repeat="item in results">
+	                                
+	                                 <div class="hr-line-dashed"></div>
+                                     <div class="search-result">
+                                        <h3><a href="{{getUrl(item)}}">{{item.titulo}}</a></h3>
+                                        <a ng-href="{{getUrl(item)}}" class="search-link">{{getUrl(item)}}</a>
+                                        
+                                        <p ng-if="item.reproduccion" ng-bind-html="item.reproduccion | trust"></p>
+                                     </div>
+              
+
+                                </div> 
+                            </div> 
+                        </div>
+                        </div> 
+
+                    </div>
+               </div>
+           </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <script src="includes/vendor.js"></script> <script src="includes/scripts.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js"></script>
+</body>
+</html>
