@@ -62,7 +62,13 @@
                                         <p ng-if="item.reproduccion" ng-bind-html="item.reproduccion | trust"></p>
                                         
                                         <dl class="dl-horizontal">
-                                            <div ng-if="item.fragmentos" ng-repeat="f in item.fragmentos track by $index"><dt>Fragmento:</dt><dd><a ng-href="http://www.cervantesvirtual.com/obra-visor/{{item.slug}}/html/{{f.url}}" ng-bind-html="f.item | trust"></a></dd></div>
+                                            <div ng-if="item.fragmentos" ng-repeat="f in item.fragmentos track by $index">
+                                                <dt>Fragmento:</dt>
+                                                <dd ng-switch on="item.tipologiaDocumental">
+                                                    <a ng-switch-when="portal" ng-href="http://www.cervantesvirtual.com/portales/{{f.url}}" ng-bind-html="f.item | trust"></a>
+                                                    <a ng-switch-default ng-href="http://www.cervantesvirtual.com/obra-visor/{{item.slug}}/html/{{f.url}}" ng-bind-html="f.item | trust"></a>
+                                                </dd>
+                                            </div>
                                         </dl>
                                      </div>
                                 </div> 
